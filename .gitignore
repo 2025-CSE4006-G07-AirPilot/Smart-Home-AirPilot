@@ -1,0 +1,4 @@
+edge/human-event/datasets/
+edge/human-event/embeddings/
+edge/human-event/models/
+.env
