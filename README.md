@@ -1,7 +1,7 @@
-# AirPilot Project
+# PuriPilot Project
 AI 기반 예측형 스마트 홈 공기질 제어 시스템
 
-AirPilot은 Edge AI, Kafka 스트림, Supabase Room Graph, Predictive Control을 결합해 집 전체 공기청정기를 사전에 제어하는 스마트홈 자동화 시스템입니다.
+PuriPilot은 Edge AI, Kafka 스트림, Supabase Room Graph, Predictive Control을 결합해 집 전체 공기청정기를 사전에 제어하는 스마트홈 자동화 시스템입니다.
 
 ## ⭐ 프로젝트 목표
 
@@ -45,7 +45,7 @@ Kafka Topics
 
 ## 디렉토리 구조
 ```
-AirPilot/
+PuriPilot/
 ├── backend-api/          # FastAPI (Room Graph / Supabase / Kafka)
 ├── edge/                 # Edge AI (휴먼 이벤트 + Telemetry)
 │   ├── human-event/      # YAMNet 임베딩 + Binary Classifier

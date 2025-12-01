@@ -1,0 +1,1 @@
+# update_device_state 등 비즈니스 로직
