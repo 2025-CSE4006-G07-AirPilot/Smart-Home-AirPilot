@@ -6,10 +6,10 @@ class DeviceProfile(BaseModel):
     device_id: str
 
     # 온도 기준 (각 기기별 온도 타겟/밴드)
-    temp_target: float = 24.0
-    temp_band_comfort: float = 0.5
-    temp_band_mild: float = 1.5
-    temp_band_strong: float = 3.0
+    temp_target: float = 18.0
+    temp_band_comfort: float = 7.0
+    temp_band_mild: float = 10.0
+    temp_band_strong: float = 15.0
 
     # 습도 기준
     humid_target: float = 45.0

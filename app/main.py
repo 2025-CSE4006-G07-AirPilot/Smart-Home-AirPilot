@@ -7,6 +7,9 @@ from app.edge_ai.routers.control import router as edge_control_router
 from app.core.db import init_db
 from app.routers import rooms, edges, devices
 
+from app.edge_ai.routers.voice import router as edge_voice_router
+
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -24,6 +27,9 @@ app.include_router(devices.router, prefix="/devices", tags=["devices"])
 
 app.include_router(edge_nlp_router)
 app.include_router(edge_control_router)
+
+app.include_router(edge_voice_router)
+
 
 
 @app.get("/health")

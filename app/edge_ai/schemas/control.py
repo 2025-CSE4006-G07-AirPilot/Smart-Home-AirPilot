@@ -31,7 +31,7 @@ class Preference(BaseModel):
     humid_target: Optional[float] = None
     humid_importance: float = 0.33
 
-    air_pref: Literal["better", "none"] = "better"
+    air_pref: Literal["better", "none"] = "none"
     air_importance: float = 0.34
 
 class Control(BaseModel):
@@ -45,3 +45,7 @@ class Control(BaseModel):
 class Suggestion(BaseModel):
     title: str
     body: List[str]            # 문장 리스트
+
+class VoicePreferenceResponse(BaseModel):
+    recognized_text: str
+    preference: Preference
