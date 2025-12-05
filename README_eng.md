@@ -93,9 +93,9 @@ npx http-server .      # Or any static server for the example/ folder
 ````
 
 Then open:
-	-	Frontend: http://localhost:8080
-	-	Backend: http://localhost:3001
-	-	Swagger UI: http://localhost:3001/api/docs
+-	Frontend: http://localhost:8080
+-	Backend: http://localhost:3001
+-	Swagger UI: http://localhost:3001/api/docs
 
 ## How to Use the App
 1.	`Edit the floor plan`
