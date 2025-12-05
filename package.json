@@ -22,14 +22,15 @@
   },
   "devDependencies": {
     "browserify": "^8.0.2",
-    "esbuild": "^0.24.0"
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:PuriPilot/Smart-Home-PuriPilot.git"
   },
   "scripts": {
-    "build": "esbuild src/blueprint3d.ts --bundle --outfile=example/js/blueprint3d.js --format=iife --global-name=Blueprint3D",
+    "build": "tsc --skipLibCheck --outFile dist/blueprint3d.js --target ES5 --module system --moduleResolution classic src/blueprint3d.ts src/core/*.ts src/floorplanner/*.ts src/items/*.ts src/model/*.ts src/three/*.ts && echo \"module.exports = BP3D;\" >> dist/blueprint3d.js && browserify dist/blueprint3d.js --standalone BP3D --outfile=example/js/blueprint3d.bundle.js --verbose && echo \"if (typeof window !== 'undefined') window.BP3D = BP3D;\" >> example/js/blueprint3d.bundle.js",
     "postinstall": "npm run build",
     "start": "node server.js",
     "start:server": "node server.js"

@@ -1,10 +1,25 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.BP3D=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var BP3D;
 (function (BP3D) {
     var Core;
     (function (Core) {
         /** Collection of utility functions. */
-        var Utils = (function () {
+        var Utils = /** @class */ (function () {
             function Utils() {
             }
             /** Determines the distance of a point from a line.
@@ -302,12 +317,13 @@ var BP3D;
                 return false;
             };
             return Utils;
-        })();
+        }());
         Core.Utils = Utils;
     })(Core = BP3D.Core || (BP3D.Core = {}));
 })(BP3D || (BP3D = {}));
 /// <reference path="../core/configuration.ts" />
 var BP3D;
+/// <reference path="../core/configuration.ts" />
 (function (BP3D) {
     var Core;
     (function (Core) {
@@ -320,7 +336,7 @@ var BP3D;
         /** Dimensioning in Milli Meter. */
         Core.dimMilliMeter = "mm";
         /** Dimensioning functions. */
-        var Dimensioning = (function () {
+        var Dimensioning = /** @class */ (function () {
             function Dimensioning() {
             }
             /** Converts cm to dimensioning string.
@@ -344,12 +360,13 @@ var BP3D;
                 }
             };
             return Dimensioning;
-        })();
+        }());
         Core.Dimensioning = Dimensioning;
     })(Core = BP3D.Core || (BP3D.Core = {}));
 })(BP3D || (BP3D = {}));
 /// <reference path="dimensioning.ts" />
 var BP3D;
+/// <reference path="dimensioning.ts" />
 (function (BP3D) {
     var Core;
     (function (Core) {
@@ -362,7 +379,7 @@ var BP3D;
         /** The initial wall thickness in cm. */
         Core.configWallThickness = "wallThickness";
         /** Global configuration to customize the whole system.  */
-        var Configuration = (function () {
+        var Configuration = /** @class */ (function () {
             function Configuration() {
             }
             /** Set a configuration parameter. */
@@ -395,7 +412,7 @@ var BP3D;
                 wallThickness: 10
             };
             return Configuration;
-        })();
+        }());
         Core.Configuration = Configuration;
     })(Core = BP3D.Core || (BP3D.Core = {}));
 })(BP3D || (BP3D = {}));
@@ -403,12 +420,11 @@ var BP3D;
 /// <reference path="../core/utils.ts" />
 /// <reference path="../model/model.ts" />
 /// <reference path="metadata.ts" />
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
@@ -416,7 +432,7 @@ var BP3D;
          * An Item is an abstract entity for all things placed in the scene,
          * e.g. at walls or on the floor.
          */
-        var Item = (function (_super) {
+        var Item = /** @class */ (function (_super) {
             __extends(Item, _super);
             /** Constructs an item.
              * @param model TODO
@@ -428,76 +444,77 @@ var BP3D;
              * @param scale TODO
              */
             function Item(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this);
-                this.model = model;
-                this.metadata = metadata;
+                var _this = _super.call(this) || this;
+                _this.model = model;
+                _this.metadata = metadata;
                 /** */
-                this.errorGlow = new THREE.Mesh();
+                _this.errorGlow = new THREE.Mesh();
                 /** */
-                this.hover = false;
+                _this.hover = false;
                 /** */
-                this.selected = false;
+                _this.selected = false;
                 /** */
-                this.highlighted = false;
+                _this.highlighted = false;
                 /** */
-                this.error = false;
+                _this.error = false;
                 /** */
-                this.emissiveColor = 0x444444;
+                _this.emissiveColor = 0x444444;
                 /** */
-                this.errorColor = 0xff0000;
+                _this.errorColor = 0xff0000;
                 /** Does this object affect other floor items */
-                this.obstructFloorMoves = true;
+                _this.obstructFloorMoves = true;
                 /** Show rotate option in context menu */
-                this.allowRotate = true;
+                _this.allowRotate = true;
                 /** */
-                this.fixed = false;
+                _this.fixed = false;
                 /** dragging */
-                this.dragOffset = new THREE.Vector3();
+                _this.dragOffset = new THREE.Vector3();
                 /** */
-                this.getHeight = function () {
+                _this.getHeight = function () {
                     return this.halfSize.y * 2.0;
                 };
                 /** */
-                this.getWidth = function () {
+                _this.getWidth = function () {
                     return this.halfSize.x * 2.0;
                 };
                 /** */
-                this.getDepth = function () {
+                _this.getDepth = function () {
                     return this.halfSize.z * 2.0;
                 };
                 /** */
-                this.initObject = function () {
+                _this.initObject = function () {
                     this.placeInRoom();
                     // select and stuff
                     this.scene.needsUpdate = true;
                 };
-                this.scene = this.model.scene;
-                this.geometry = geometry;
-                this.material = material;
-                this.errorColor = 0xff0000;
-                this.resizable = metadata.resizable;
-                this.castShadow = true;
-                this.receiveShadow = false;
-                this.geometry = geometry;
-                this.material = material;
+                _this.scene = _this.model.scene;
+                _this.geometry = geometry;
+                _this.material = material;
+                _this.errorColor = 0xff0000;
+                _this.resizable = metadata.resizable;
+                _this.castShadow = true;
+                _this.receiveShadow = false;
+                _this.geometry = geometry;
+                _this.material = material;
                 if (position) {
-                    this.position.copy(position);
-                    this.position_set = true;
+                    _this.position.copy(position);
+                    _this.position_set = true;
                 }
                 else {
-                    this.position_set = false;
+                    _this.position_set = false;
                 }
                 // center in its boundingbox
-                this.geometry.computeBoundingBox();
-                this.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(-0.5 * (this.geometry.boundingBox.max.x + this.geometry.boundingBox.min.x), -0.5 * (this.geometry.boundingBox.max.y + this.geometry.boundingBox.min.y), -0.5 * (this.geometry.boundingBox.max.z + this.geometry.boundingBox.min.z)));
-                this.geometry.computeBoundingBox();
-                this.halfSize = this.objectHalfSize();
+                _this.geometry.computeBoundingBox();
+                _this.geometry.applyMatrix(new THREE.Matrix4().makeTranslation(-0.5 * (_this.geometry.boundingBox.max.x + _this.geometry.boundingBox.min.x), -0.5 * (_this.geometry.boundingBox.max.y + _this.geometry.boundingBox.min.y), -0.5 * (_this.geometry.boundingBox.max.z + _this.geometry.boundingBox.min.z)));
+                _this.geometry.computeBoundingBox();
+                _this.halfSize = _this.objectHalfSize();
                 if (rotation) {
-                    this.rotation.y = rotation;
+                    _this.rotation.y = rotation;
                 }
                 if (scale != null) {
-                    this.setScale(scale.x, scale.y, scale.z);
+                    _this.setScale(scale.x, scale.y, scale.z);
                 }
+                return _this;
             }
             ;
             /** */
@@ -686,7 +703,7 @@ var BP3D;
             };
             ;
             return Item;
-        })(THREE.Mesh);
+        }(THREE.Mesh));
         Items.Item = Item;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -695,6 +712,10 @@ var BP3D;
 /// <reference path="floorplan.ts" />
 /// <reference path="wall.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="floorplan.ts" />
+/// <reference path="wall.ts" />
 (function (BP3D) {
     var Model;
     (function (Model) {
@@ -703,7 +724,7 @@ var BP3D;
         /**
          * Corners are used to define Walls.
          */
-        var Corner = (function () {
+        var Corner = /** @class */ (function () {
             /** Constructs a corner.
              * @param floorplan The associated floorplan.
              * @param x X coordinate.
@@ -1005,7 +1026,7 @@ var BP3D;
                 }
             };
             return Corner;
-        })();
+        }());
         Model.Corner = Corner;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -1013,6 +1034,9 @@ var BP3D;
 /// <reference path="../../lib/jQuery.d.ts" />
 /// <reference path="../core/utils.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../core/utils.ts" />
 (function (BP3D) {
     var Model;
     (function (Model) {
@@ -1023,7 +1047,7 @@ var BP3D;
          *
          * A wall can have two half edges if it is visible from both sides.
          */
-        var HalfEdge = (function () {
+        var HalfEdge = /** @class */ (function () {
             /**
              * Constructs a half edge.
              * @param room The associated room.
@@ -1250,7 +1274,7 @@ var BP3D;
                 return halfAngleVector;
             };
             return HalfEdge;
-        })();
+        }());
         Model.HalfEdge = HalfEdge;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -1262,6 +1286,13 @@ var BP3D;
 /// <reference path="corner.ts" />
 /// <reference path="half_edge.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../core/configuration.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="../items/item.ts" />
+/// <reference path="corner.ts" />
+/// <reference path="half_edge.ts" />
 (function (BP3D) {
     var Model;
     (function (Model) {
@@ -1276,7 +1307,7 @@ var BP3D;
          *
          * Walls consists of two half edges.
          */
-        var Wall = (function () {
+        var Wall = /** @class */ (function () {
             /**
              * Constructs a new wall.
              * @param start Start corner.
@@ -1410,7 +1441,7 @@ var BP3D;
                 }
             };
             return Wall;
-        })();
+        }());
         Model.Wall = Wall;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -1427,6 +1458,18 @@ var segseg = require('segseg')
 var Polygon = require('polygon')
 */
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="corner.ts" />
+/// <reference path="floorplan.ts" />
+/// <reference path="half_edge.ts" />
+/*
+TODO
+var Vec2 = require('vec2')
+var segseg = require('segseg')
+var Polygon = require('polygon')
+*/
 (function (BP3D) {
     var Model;
     (function (Model) {
@@ -1438,7 +1481,7 @@ var BP3D;
         /**
          * A Room is the combination of a Floorplan with a floor plane.
          */
-        var Room = (function () {
+        var Room = /** @class */ (function () {
             /**
              *  ordered CCW
              */
@@ -1557,7 +1600,7 @@ var BP3D;
                 this.edgePointer = firstEdge;
             };
             return Room;
-        })();
+        }());
         Model.Room = Room;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -1569,6 +1612,13 @@ var BP3D;
 /// <reference path="room.ts" />
 /// <reference path="half_edge.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="wall.ts" />
+/// <reference path="corner.ts" />
+/// <reference path="room.ts" />
+/// <reference path="half_edge.ts" />
 (function (BP3D) {
     var Model;
     (function (Model) {
@@ -1577,7 +1627,7 @@ var BP3D;
         /**
          * A Floorplan represents a number of Walls, Corners and Rooms.
          */
-        var Floorplan = (function () {
+        var Floorplan = /** @class */ (function () {
             /** Constructs a floorplan. */
             function Floorplan() {
                 /** */
@@ -1992,7 +2042,7 @@ var BP3D;
                 return uniqueCCWLoops;
             };
             return Floorplan;
-        })();
+        }());
         Model.Floorplan = Floorplan;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -2001,16 +2051,20 @@ var BP3D;
 /// <reference path="item.ts" />
 /// <reference path="metadata.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="item.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
         /**
          * A Floor Item is an entity to be placed related to a floor.
          */
-        var FloorItem = (function (_super) {
+        var FloorItem = /** @class */ (function (_super) {
             __extends(FloorItem, _super);
             function FloorItem(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this, model, metadata, geometry, material, position, rotation, scale);
+                return _super.call(this, model, metadata, geometry, material, position, rotation, scale) || this;
             }
             ;
             /** */
@@ -2074,7 +2128,7 @@ var BP3D;
                 return true;
             };
             return FloorItem;
-        })(Items.Item);
+        }(Items.Item));
         Items.FloorItem = FloorItem;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2085,18 +2139,24 @@ var BP3D;
 /// <reference path="item.ts" />
 /// <reference path="metadata.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="../model/half_edge.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="item.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
         /**
          * A Wall Item is an entity to be placed related to a wall.
          */
-        var WallItem = (function (_super) {
+        var WallItem = /** @class */ (function (_super) {
             __extends(WallItem, _super);
             function WallItem(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this, model, metadata, geometry, material, position, rotation, scale);
+                var _this = _super.call(this, model, metadata, geometry, material, position, rotation, scale) || this;
                 /** The currently applied wall edge. */
-                this.currentWallEdge = null;
+                _this.currentWallEdge = null;
                 /* TODO:
                    This caused a huge headache.
                    HalfEdges get destroyed/created every time floorplan is edited.
@@ -2104,22 +2164,23 @@ var BP3D;
                    and grab its edge reference dynamically whenever it needs it.
                  */
                 /** used for finding rotations */
-                this.refVec = new THREE.Vector2(0, 1.0);
+                _this.refVec = new THREE.Vector2(0, 1.0);
                 /** */
-                this.wallOffsetScalar = 0;
+                _this.wallOffsetScalar = 0;
                 /** */
-                this.sizeX = 0;
+                _this.sizeX = 0;
                 /** */
-                this.sizeY = 0;
+                _this.sizeY = 0;
                 /** */
-                this.addToWall = false;
+                _this.addToWall = false;
                 /** */
-                this.boundToFloor = false;
+                _this.boundToFloor = false;
                 /** */
-                this.frontVisible = false;
+                _this.frontVisible = false;
                 /** */
-                this.backVisible = false;
-                this.allowRotate = false;
+                _this.backVisible = false;
+                _this.allowRotate = false;
+                return _this;
             }
             ;
             /** Get the closet wall edge.
@@ -2267,7 +2328,7 @@ var BP3D;
                 vec3.applyMatrix4(edge.invInteriorTransform);
             };
             return WallItem;
-        })(Items.Item);
+        }(Items.Item));
         Items.WallItem = WallItem;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2276,15 +2337,20 @@ var BP3D;
 /// <reference path="wall_item.ts" />
 /// <reference path="metadata.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="wall_item.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
         /** */
-        var InWallItem = (function (_super) {
+        var InWallItem = /** @class */ (function (_super) {
             __extends(InWallItem, _super);
             function InWallItem(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this, model, metadata, geometry, material, position, rotation, scale);
-                this.addToWall = true;
+                var _this = _super.call(this, model, metadata, geometry, material, position, rotation, scale) || this;
+                _this.addToWall = true;
+                return _this;
             }
             ;
             /** */
@@ -2293,7 +2359,7 @@ var BP3D;
                 return -this.currentWallEdge.offset + 0.5;
             };
             return InWallItem;
-        })(Items.WallItem);
+        }(Items.WallItem));
         Items.InWallItem = InWallItem;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2302,19 +2368,24 @@ var BP3D;
 /// <reference path="in_wall_item.ts" />
 /// <reference path="metadata.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="in_wall_item.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
         /** */
-        var InWallFloorItem = (function (_super) {
+        var InWallFloorItem = /** @class */ (function (_super) {
             __extends(InWallFloorItem, _super);
             function InWallFloorItem(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this, model, metadata, geometry, material, position, rotation, scale);
-                this.boundToFloor = true;
+                var _this = _super.call(this, model, metadata, geometry, material, position, rotation, scale) || this;
+                _this.boundToFloor = true;
+                return _this;
             }
             ;
             return InWallFloorItem;
-        })(Items.InWallItem);
+        }(Items.InWallItem));
         Items.InWallFloorItem = InWallFloorItem;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2323,20 +2394,25 @@ var BP3D;
 /// <reference path="floor_item.ts" />
 /// <reference path="metadata.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="floor_item.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
         /** */
-        var OnFloorItem = (function (_super) {
+        var OnFloorItem = /** @class */ (function (_super) {
             __extends(OnFloorItem, _super);
             function OnFloorItem(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this, model, metadata, geometry, material, position, rotation, scale);
-                this.obstructFloorMoves = false;
-                this.receiveShadow = true;
+                var _this = _super.call(this, model, metadata, geometry, material, position, rotation, scale) || this;
+                _this.obstructFloorMoves = false;
+                _this.receiveShadow = true;
+                return _this;
             }
             ;
             return OnFloorItem;
-        })(Items.FloorItem);
+        }(Items.FloorItem));
         Items.OnFloorItem = OnFloorItem;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2345,19 +2421,24 @@ var BP3D;
 /// <reference path="wall_item.ts" />
 /// <reference path="metadata.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="wall_item.ts" />
+/// <reference path="metadata.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
         /** */
-        var WallFloorItem = (function (_super) {
+        var WallFloorItem = /** @class */ (function (_super) {
             __extends(WallFloorItem, _super);
             function WallFloorItem(model, metadata, geometry, material, position, rotation, scale) {
-                _super.call(this, model, metadata, geometry, material, position, rotation, scale);
-                this.boundToFloor = true;
+                var _this = _super.call(this, model, metadata, geometry, material, position, rotation, scale) || this;
+                _this.boundToFloor = true;
+                return _this;
             }
             ;
             return WallFloorItem;
-        })(Items.WallItem);
+        }(Items.WallItem));
         Items.WallFloorItem = WallFloorItem;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2368,6 +2449,12 @@ var BP3D;
 /// <reference path="wall_floor_item.ts" />
 /// <reference path="wall_item.ts" />
 var BP3D;
+/// <reference path="floor_item.ts" />
+/// <reference path="in_wall_floor_item.ts" />
+/// <reference path="in_wall_item.ts" />
+/// <reference path="on_floor_item.ts" />
+/// <reference path="wall_floor_item.ts" />
+/// <reference path="wall_item.ts" />
 (function (BP3D) {
     var Items;
     (function (Items) {
@@ -2381,7 +2468,7 @@ var BP3D;
             9: Items.WallFloorItem
         };
         /** Factory class to create items. */
-        var Factory = (function () {
+        var Factory = /** @class */ (function () {
             function Factory() {
             }
             /** Gets the class for the specified item. */
@@ -2389,7 +2476,7 @@ var BP3D;
                 return item_types[itemType];
             };
             return Factory;
-        })();
+        }());
         Items.Factory = Factory;
     })(Items = BP3D.Items || (BP3D.Items = {}));
 })(BP3D || (BP3D = {}));
@@ -2398,13 +2485,17 @@ var BP3D;
 /// <reference path="../core/utils.ts" />
 /// <reference path="../items/factory.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="../items/factory.ts" />
 (function (BP3D) {
     var Model;
     (function (Model) {
         /**
          * The Scene is a manager of Items and also links to a ThreeJS scene.
          */
-        var Scene = (function () {
+        var Scene = /** @class */ (function () {
             /**
              * Constructs a scene.
              * @param model The associated model.
@@ -2509,7 +2600,7 @@ var BP3D;
                 );
             };
             return Scene;
-        })();
+        }());
         Model.Scene = Scene;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -2518,13 +2609,17 @@ var BP3D;
 /// <reference path="floorplan.ts" />
 /// <reference path="scene.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="floorplan.ts" />
+/// <reference path="scene.ts" />
 (function (BP3D) {
     var Model;
     (function (Model_1) {
         /**
          * A Model connects a Floorplan and a Scene.
          */
-        var Model = (function () {
+        var Model = /** @class */ (function () {
             /** Constructs a new model.
              * @param textureDir The directory containing the textures.
              */
@@ -2590,7 +2685,7 @@ var BP3D;
                 });
             };
             return Model;
-        })();
+        }());
         Model_1.Model = Model;
     })(Model = BP3D.Model || (BP3D.Model = {}));
 })(BP3D || (BP3D = {}));
@@ -2604,6 +2699,15 @@ var BP3D;
 /// <reference path="../model/wall.ts" />
 /// <reference path="floorplanner.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../core/configuration.ts" />
+/// <reference path="../core/dimensioning.ts" />
+/// <reference path="../core/utils.ts" />
+/// <reference path="../model/floorplan.ts" />
+/// <reference path="../model/half_edge.ts" />
+/// <reference path="../model/model.ts" />
+/// <reference path="../model/wall.ts" />
+/// <reference path="floorplanner.ts" />
 (function (BP3D) {
     var Floorplanner;
     (function (Floorplanner) {
@@ -2636,7 +2740,7 @@ var BP3D;
         /**
          * The View to be used by a Floorplanner to render in/interact with.
          */
-        var FloorplannerView = (function () {
+        var FloorplannerView = /** @class */ (function () {
             /** */
             function FloorplannerView(floorplan, viewmodel, canvas) {
                 this.floorplan = floorplan;
@@ -2841,7 +2945,7 @@ var BP3D;
                 }
             };
             return FloorplannerView;
-        })();
+        }());
         Floorplanner.FloorplannerView = FloorplannerView;
     })(Floorplanner = BP3D.Floorplanner || (BP3D.Floorplanner = {}));
 })(BP3D || (BP3D = {}));
@@ -2849,6 +2953,9 @@ var BP3D;
 /// <reference path="../model/floorplan.ts" />
 /// <reference path="floorplanner_view.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../model/floorplan.ts" />
+/// <reference path="floorplanner_view.ts" />
 (function (BP3D) {
     var Floorplanner;
     (function (Floorplanner_1) {
@@ -2857,7 +2964,7 @@ var BP3D;
         /**
          * The Floorplanner implements an interactive tool for creation of floorplans.
          */
-        var Floorplanner = (function () {
+        var Floorplanner = /** @class */ (function () {
             /** */
             function Floorplanner(canvas, floorplan) {
                 this.floorplan = floorplan;
@@ -3084,7 +3191,7 @@ var BP3D;
                 return (y - this.originY * this.cmPerPixel) * this.pixelsPerCm;
             };
             return Floorplanner;
-        })();
+        }());
         Floorplanner_1.Floorplanner = Floorplanner;
     })(Floorplanner = BP3D.Floorplanner || (BP3D.Floorplanner = {}));
 })(BP3D || (BP3D = {}));
@@ -3092,6 +3199,9 @@ var BP3D;
 /// <reference path="../../lib/three.d.ts" />
 /// <reference path="../core/utils.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -3114,11 +3224,11 @@ var BP3D;
             var mouseMoved = false; // has mouse moved since down click
             var rotateMouseOver = false;
             var states = {
-                UNSELECTED: 0,
-                SELECTED: 1,
-                DRAGGING: 2,
-                ROTATING: 3,
-                ROTATING_FREE: 4,
+                UNSELECTED: 0, // no object selected
+                SELECTED: 1, // selected but inactive
+                DRAGGING: 2, // performing an action while mouse depressed
+                ROTATING: 3, // rotating with mouse down
+                ROTATING_FREE: 4, // rotating with mouse up
                 PANNING: 5
             };
             var state = states.UNSELECTED;
@@ -3464,6 +3574,7 @@ var BP3D;
                             scope.needsUpdate = true;
                         }
                         else {
+                            // do nothing, mouseover already set
                         }
                     }
                     else {
@@ -3487,6 +3598,8 @@ var BP3D;
 /// <reference path="../../lib/three.d.ts" />
 /// <reference path="../core/utils.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -3573,6 +3686,9 @@ var BP3D;
 /// <reference path="../../lib/three.d.ts" />
 /// <reference path="../core/utils.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -3685,6 +3801,7 @@ var BP3D;
                     //ambient: scope.wall.color,
                     side: THREE.FrontSide,
                     map: texture,
+                    // lightMap: lightMap TODO_Ekki
                 });
                 var fillerMaterial = new THREE.MeshBasicMaterial({
                     color: fillerColor,
@@ -3758,7 +3875,8 @@ var BP3D;
                     geometry.faceVertexUvs[0].push([
                         vertexToUv(vertA),
                         vertexToUv(vertB),
-                        vertexToUv(vertC)]);
+                        vertexToUv(vertC)
+                    ]);
                 });
                 geometry.faceVertexUvs[1] = geometry.faceVertexUvs[0];
                 geometry.computeFaceNormals();
@@ -3819,6 +3937,9 @@ var BP3D;
 /// <reference path="floor.ts" />
 /// <reference path="edge.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="floor.ts" />
+/// <reference path="edge.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -3857,6 +3978,7 @@ var BP3D;
 })(BP3D || (BP3D = {}));
 /// <reference path="../../lib/three.d.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -3916,6 +4038,7 @@ var BP3D;
 })(BP3D || (BP3D = {}));
 /// <reference path="../../lib/three.d.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -3987,6 +4110,17 @@ Contributors:
 /// <reference path="../../lib/jQuery.d.ts" />
 /// <reference path="../../lib/three.d.ts" />
 var BP3D;
+/**
+This file is a modified version of THREE.OrbitControls
+Contributors:
+ * @author qiao / https://github.com/qiao
+ * @author mrdoob / http://mrdoob.com
+ * @author alteredq / http://alteredqualia.com/
+ * @author WestLangley / http://github.com/WestLangley
+ * @author erich666 / http://erichaines.com
+ */
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../../lib/three.d.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -4238,7 +4372,7 @@ var BP3D;
                 // Greggman fix: https://github.com/greggman/three.js/commit/fde9f9917d6d8381f06bf22cdff766029d1761be
                 scope.update();
             }
-            function onMouseUp() {
+            function onMouseUp( /* event */) {
                 if (scope.enabled === false)
                     return;
                 // Greggman fix: https://github.com/greggman/three.js/commit/fde9f9917d6d8381f06bf22cdff766029d1761be
@@ -4250,10 +4384,10 @@ var BP3D;
                 if (scope.enabled === false || scope.noZoom === true)
                     return;
                 var delta = 0;
-                if (event.wheelDelta) {
+                if (event.wheelDelta) { // WebKit / Opera / Explorer 9
                     delta = event.wheelDelta;
                 }
-                else if (event.detail) {
+                else if (event.detail) { // Firefox
                     delta = -event.detail;
                 }
                 if (delta > 0) {
@@ -4294,14 +4428,14 @@ var BP3D;
                     return;
                 }
                 switch (event.touches.length) {
-                    case 1:
+                    case 1: // one-fingered touch: rotate
                         if (scope.noRotate === true) {
                             return;
                         }
                         state = STATE.TOUCH_ROTATE;
                         rotateStart.set(event.touches[0].pageX, event.touches[0].pageY);
                         break;
-                    case 2:
+                    case 2: // two-fingered touch: dolly
                         if (scope.noZoom === true) {
                             return;
                         }
@@ -4311,7 +4445,7 @@ var BP3D;
                         var distance = Math.sqrt(dx * dx + dy * dy);
                         dollyStart.set(0, distance);
                         break;
-                    case 3:
+                    case 3: // three-fingered touch: pan
                         if (scope.noPan === true) {
                             return;
                         }
@@ -4330,7 +4464,7 @@ var BP3D;
                 event.stopPropagation();
                 var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
                 switch (event.touches.length) {
-                    case 1:
+                    case 1: // one-fingered touch: rotate
                         if (scope.noRotate === true) {
                             return;
                         }
@@ -4345,7 +4479,7 @@ var BP3D;
                         scope.rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed);
                         rotateStart.copy(rotateEnd);
                         break;
-                    case 2:
+                    case 2: // two-fingered touch: dolly
                         if (scope.noZoom === true) {
                             return;
                         }
@@ -4365,7 +4499,7 @@ var BP3D;
                         }
                         dollyStart.copy(dollyEnd);
                         break;
-                    case 3:
+                    case 3: // three-fingered touch: pan
                         if (scope.noPan === true) {
                             return;
                         }
@@ -4381,7 +4515,7 @@ var BP3D;
                         state = STATE.NONE;
                 }
             }
-            function touchend() {
+            function touchend( /* event */) {
                 if (scope.enabled === false) {
                     return;
                 }
@@ -4401,6 +4535,8 @@ var BP3D;
 /// <reference path="../../lib/three.d.ts" />
 /// <reference path="../core/utils.ts" />
 var BP3D;
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="../core/utils.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -4537,6 +4673,14 @@ var BP3D;
 /// <reference path="controls.ts" />
 /// <reference path="hud.ts" />
 var BP3D;
+/// <reference path="../../lib/jQuery.d.ts" />
+/// <reference path="../../lib/three.d.ts" />
+/// <reference path="controller.ts" />
+/// <reference path="floorPlan.ts" />
+/// <reference path="lights.ts" />
+/// <reference path="skybox.ts" />
+/// <reference path="controls.ts" />
+/// <reference path="hud.ts" />
 (function (BP3D) {
     var Three;
     (function (Three) {
@@ -4744,9 +4888,12 @@ var BP3D;
 /// <reference path="floorplanner/floorplanner.ts" />
 /// <reference path="three/main.ts" />
 var BP3D;
+/// <reference path="model/model.ts" />
+/// <reference path="floorplanner/floorplanner.ts" />
+/// <reference path="three/main.ts" />
 (function (BP3D) {
     /** Blueprint3D core application. */
-    var Blueprint3d = (function () {
+    var Blueprint3d = /** @class */ (function () {
         /** Creates an instance.
          * @param options The initialization options.
          */
@@ -4761,7 +4908,7 @@ var BP3D;
             }
         }
         return Blueprint3d;
-    })();
+    }());
     BP3D.Blueprint3d = Blueprint3d;
 })(BP3D || (BP3D = {}));
 var BP3D;
@@ -4769,6 +4916,7 @@ var BP3D;
     var Core;
     (function (Core) {
         /** Enumeration of log contexts. */
+        var ELogContext;
         (function (ELogContext) {
             /** Log nothing. */
             ELogContext[ELogContext["None"] = 0] = "None";
@@ -4782,9 +4930,9 @@ var BP3D;
             ELogContext[ELogContext["Wall"] = 4] = "Wall";
             /** Room(s) */
             ELogContext[ELogContext["Room"] = 5] = "Room";
-        })(Core.ELogContext || (Core.ELogContext = {}));
-        var ELogContext = Core.ELogContext;
+        })(ELogContext = Core.ELogContext || (Core.ELogContext = {}));
         /** Enumeration of log levels. */
+        var ELogLevel;
         (function (ELogLevel) {
             /** An information. */
             ELogLevel[ELogLevel["Information"] = 0] = "Information";
@@ -4796,8 +4944,7 @@ var BP3D;
             ELogLevel[ELogLevel["Fatal"] = 3] = "Fatal";
             /** A debug message. */
             ELogLevel[ELogLevel["Debug"] = 4] = "Debug";
-        })(Core.ELogLevel || (Core.ELogLevel = {}));
-        var ELogLevel = Core.ELogLevel;
+        })(ELogLevel = Core.ELogLevel || (Core.ELogLevel = {}));
         /** The current log context. To be set when initializing the Application. */
         Core.logContext = ELogContext.None;
         /** Pre-check if logging for specified context and/or level is enabled.
@@ -4849,7 +4996,7 @@ var BP3D;
     var Core;
     (function (Core) {
         /** Version information. */
-        var Version = (function () {
+        var Version = /** @class */ (function () {
             function Version() {
             }
             /** The informal version. */
@@ -4861,15 +5008,13 @@ var BP3D;
                 return "1.0.0.1";
             };
             return Version;
-        })();
+        }());
         Core.Version = Version;
     })(Core = BP3D.Core || (BP3D.Core = {}));
 })(BP3D || (BP3D = {}));
 console.log("Blueprint3D " + BP3D.Core.Version.getInformalVersion()
     + " (" + BP3D.Core.Version.getTechnicalVersion() + ")");
+module.exports = BP3D;
 
-if (typeof window !== 'undefined') {
-    window.BP3D = BP3D;
-}
-//# sourceMappingURL=blueprint3d.js.map
-},{}]},{},[1]);
+},{}]},{},[1])(1)
+});if (typeof window !== 'undefined') window.BP3D = BP3D;
