@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const mysql = require('mysql2/promise');
 const swaggerUi = require('swagger-ui-express');
 const { randomUUID } = require('crypto');
@@ -8,18 +9,28 @@ const { randomUUID } = require('crypto');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const sslMode = (process.env.MYSQL_SSL_MODE || '').toUpperCase();
+const sslConfig = sslMode === 'REQUIRED'
+  ? { rejectUnauthorized: true, ca: process.env.MYSQL_SSL_CA }
+  : undefined;
+
 const DB_CONFIG = {
   host: process.env.MYSQL_HOST || 'localhost',
   user: process.env.MYSQL_USER || 'root',
   password: process.env.MYSQL_PASSWORD || '',
   database: process.env.MYSQL_DATABASE || 'puripilot_db',
   port: process.env.MYSQL_PORT ? Number(process.env.MYSQL_PORT) : 3306,
+  ssl: sslConfig,
   waitForConnections: true,
   connectionLimit: 10
 };
 
 app.use(cors());
 app.use(express.json({ limit: '5mb' }));
+
+// Serve built/static front-end assets from /example
+const staticDir = path.join(__dirname, 'example');
+app.use(express.static(staticDir));
 
 let pool;
 
@@ -108,6 +119,11 @@ async function getDevice(id) {
 
 app.get('/api/health', async (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
+});
+
+// Root route serves the front-end entry (index.html)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(staticDir, 'index.html'));
 });
 
 // Devices
@@ -337,6 +353,11 @@ const openapiDoc = {
 };
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openapiDoc));
+
+// SPA-style fallback: non-API routes serve index.html so client-side routing works
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.join(staticDir, 'index.html'));
+});
 
 initDb().then(() => {
   app.listen(PORT, () => {

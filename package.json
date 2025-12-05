@@ -28,7 +28,8 @@
     "url": "git@github.com:PuriPilot/Smart-Home-PuriPilot.git"
   },
   "scripts": {
-    "build": "browserify src/blueprint3d.js > example/js/blueprint3d.js --verbose",
+    "build": "browserify dist/blueprint3d.js > example/js/blueprint3d.bundle.js --verbose",
+    "start": "node server.js",
     "start:server": "node server.js"
   },
   "author": ""
