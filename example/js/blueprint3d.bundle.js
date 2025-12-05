@@ -4867,5 +4867,9 @@ var BP3D;
 })(BP3D || (BP3D = {}));
 console.log("Blueprint3D " + BP3D.Core.Version.getInformalVersion()
     + " (" + BP3D.Core.Version.getTechnicalVersion() + ")");
+
+if (typeof window !== 'undefined') {
+    window.BP3D = BP3D;
+}
 //# sourceMappingURL=blueprint3d.js.map
 },{}]},{},[1]);
